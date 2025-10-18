@@ -147,7 +147,7 @@ Odds: 1 in 290,472,336
     for (int i = 0; i < lenMM; i++) { // loop to print numbers
         cout << "\e[1;30;107m" << mm[i] << "\e[0m ";
     }
-    cout << "\e[1;97;43m" << (rand() % 25) + 1 << "\e[0m"; // generate and print Mega Millions number
+    cout << "\e[1;97;43m" << (rand() % 24) + 1 << "\e[0m"; // generate and print Mega Millions number
     cout << endl;
     cout << endl;
 }
