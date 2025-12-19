@@ -5,6 +5,8 @@ Generates lottery numbers for the Mega Millions, Powerball, and Super Lotto draw
 
 #include <iostream>
 #include <string>
+#include <set>
+#include <random>
 using namespace std;
 
 // Title header
@@ -131,23 +133,29 @@ Mega Millions
 5(1-70) + 1(1-24)
 Odds: 1 in 290,472,336
 */
-    int mm[5];
-    int lenMM = sizeof(mm)/sizeof(mm[0]);
-    for (int i = 0; i < lenMM; i++) { // loop to populate array with random numbers
-        mm[i] = (rand() % 70) + 1;
-        for (int j = 0; j < i; j++) { // loop to replace duplicates numbers
-            if (mm[i] == mm[j]) {
-                mm[i] = (rand() % 70) + 1;
-            }
-        }
+    set<int> numbers;
+    int mm_number;
+
+    // Random number setup
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 70);
+    uniform_int_distribution<> dist_mm(1, 24);
+
+    // Generate 5 unique random numbers
+    while (numbers.size() < 5) {
+        numbers.insert(dist(gen));
     }
-    sort (begin(mm), end(mm)); // sort numbers in ascending order
+
+    // Generate 1 unique random number
+    mm_number = (dist_mm(gen));
+
     cout << "Your winning \e[1;31;107mMega\e[1;38;5;45;48;5;255mMillions\e[0m numbers:" << endl;
     cout << "----------------------------------" << endl;
-    for (int i = 0; i < lenMM; i++) { // loop to print numbers
-        cout << "\e[1;30;107m" << mm[i] << "\e[0m ";
+    for (int num : numbers) { // Loop to print main numbers
+        cout << "\e[1;30;107m" << num << "\e[0m ";
     }
-    cout << "\e[1;97;43m" << (rand() % 24) + 1 << "\e[0m"; // generate and print Mega Millions number
+    cout << "\e[1;97;43m" << mm_number << "\e[0m"; // Generate and print Mega Millions number
     cout << endl;
     cout << endl;
 }
@@ -159,23 +167,29 @@ Powerball
 5(1-69) + 1(1-26)
 Odds: 1 in 292,201,338
 */
-    int pb[5];
-    int lenPB = sizeof(pb)/sizeof(pb[0]);
-    for (int i = 0; i < lenPB; i++) { // loop to populate array with random numbers
-        pb[i] = (rand() % 69) + 1;
-        for (int j = 0; j < i; j++) { // loop to replace duplicates numbers
-            if (pb[i] == pb[j]) {
-                pb[i] = (rand() % 69) + 1;
-            }
-        }
+    set<int> numbers;
+    int pb_number;
+
+    // Random number setup
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 69);
+    uniform_int_distribution<> dist_pb(1, 26);
+
+    // Generate 5 unique random numbers
+    while (numbers.size() < 5) {
+        numbers.insert(dist(gen));
     }
-    sort (begin(pb), end(pb)); // sort numbers in ascending order
+
+    // Generate 1 unique random number
+    pb_number = (dist_pb(gen));
+
     cout << "Your winning \e[1;30;107mPOWER\e[1;97;41mBALL\e[0m numbers:" << endl;
     cout << "-------------------------------" << endl;
-    for (int i = 0; i < lenPB; i++) { // loop to print numbers
-        cout << "\e[1;30;107m" << pb[i] << "\e[0m ";
+    for (int num : numbers) { // Loop to print main numbers
+        cout << "\e[1;30;107m" << num << "\e[0m ";
     }
-    cout << "\e[1;97;41m" << (rand() % 26) + 1 << "\e[0m"; // generate and print Powerball number
+    cout << "\e[1;97;41m" << pb_number << "\e[0m"; // Generate and print Powerball number
     cout << endl;
     cout << endl;
 }
@@ -186,23 +200,29 @@ void superLotto() {
 5(1-47) + 1(1-27)
 Odds: 1 in 41,416,353
 */
-    int sl[5];
-    int lenSL = sizeof(sl)/sizeof(sl[0]);
-    for (int i = 0; i < lenSL; i++) { // loop to populate array with random numbers
-        sl[i] = (rand() % 47) + 1;
-        for (int j = 0; j < i; j++) { // loop to replace duplicates numbers
-            if (sl[i] == sl[j]) {
-                sl[i] = (rand() % 47) + 1;
-            }
-        }
+    set<int> numbers;
+    int sl_number;
+
+    // Random number setup
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 47);
+    uniform_int_distribution<> dist_sl(1, 27);
+
+    // Generate 5 unique random numbers
+    while (numbers.size() < 5) {
+        numbers.insert(dist(gen));
     }
-    sort (begin(sl), end(sl)); // sort numbers in ascending order
+
+    // Generate 1 unique random number
+    sl_number = (dist_sl(gen));
+
     cout << "Your winning \e[1;38;5;45;48;5;214mSuperLottoPLUS\e[0m numbers:" << endl;
     cout << "------------------------------------" << endl;
-    for (int i = 0; i < lenSL; i++) { // loop to print numbers
-        cout << "\e[1;30;107m" << sl[i] << "\e[0m ";
+    for (int num : numbers) { // Loop to print main numbers
+        cout << "\e[1;30;107m" << num << "\e[0m ";
     }
-    cout << "\e[1;97;44m" << (rand() % 27) + 1 << "\e[0m"; // generate and print Super Lotto number
+    cout << "\e[1;97;44m" << sl_number << "\e[0m"; // Generate and print Super Lotto number
     cout << endl;
     cout << endl;
 }
